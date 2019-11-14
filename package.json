@@ -1,0 +1,17 @@
+{
+  "name": "tree-sitter-spade",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "tree-sitter",
+    "build": "tree-sitter generate"
+  },
+  "author": "jf908",
+  "dependencies": {
+    "nan": "^2.14.0"
+  },
+  "devDependencies": {
+    "tree-sitter-cli": "^0.15.12"
+  }
+}
