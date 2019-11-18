@@ -52,6 +52,8 @@ module.exports = grammar({
       $.true,
       $.false,
       $.number,
+      $.range,
+      $.listCont,
       $.string,
       $.array,
       $.map,
@@ -122,7 +124,7 @@ module.exports = grammar({
         field('condition', $._expression),
         $.block,
       ))),
-      optional(seq('else', field('else_condition', $._expression), $.block)),
+      optional(seq('else', $.block)),
     ),
 
     for_statement: $ => seq(
@@ -206,6 +208,22 @@ module.exports = grammar({
     ),
 
     identifier: $ => /[a-zA-Z_][a-zA-Z_0-9]*/,
+
+    range: $ => seq(
+        '[',
+        choice(
+          seq('..', $.number),
+          seq($.number, '..', $.number),
+          seq($.number, '..')
+        ),
+        ']'
+    ),
+
+    listCont: $ => seq(
+      '[',
+      seq($.number, '...', $.number),
+      ']'
+  ),
 
     true: $ => 'true',
     false: $ => 'false',
